@@ -9,13 +9,13 @@ Contexto:
 Dado que eu acesse a página de autenticação do Portal EBAC
 
 Cenário: Login com sucesso
-Quando preenche o campo de e-mail com "cliente@ebac.com.br"
-E preenche o campo de senha com "senha123"
-E clica no botão de login
-Então ele é redirecionado para a tela de checkout
+Quando eu digitar o e-mail "cliente@ebac.com.br", a senha "senha123" e clica no botão de login
+Então devo ser redirecionado para a tela de checkout
 
 Cenário: Login com e-mail inválido
-Quando preenche o campo de e-mail com "cliente_errado@ebac.com.br"
-E preenche o campo de senha com "senha123"
-E clica no botão de login
-Então visualiza uma mensagem de alerta "Usuário ou senha inválidos"
+Quando eu digitar o e-mail "cliente_errado@ebac.com.br", a senha "senha123" e clica no botão de login
+Então devo visualizar a mensagem de alerta "Usuário ou senha inválidos"
+
+Cenário: Login com senha inválida
+Quando eu digitar o e-mail "cliente@ebac.com.br", a senha "senha_errada" e clica no botão de login
+Então devo visualizar a mensagem de alerta "Usuário ou senha inválidos"
