@@ -1,0 +1,299 @@
+{
+	"info": {
+		"_postman_id": "dfb1838d-0959-4d9d-960d-0c03f306fc6a",
+		"name": "Teste - M13",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23944439"
+	},
+	"item": [
+		{
+			"name": "User Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const response = pm.response.json()",
+							"pm.globals.set(\"token\", response.authorization)",
+							"",
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200]);",
+							"});",
+							"pm.test(\"Body matches string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"Login realizado com sucesso\");",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"email\": \"brightside@qa.com.br\",\n  \"password\": \"teste\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/login",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List Users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/usuarios",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"usuarios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Body matches string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"Usuário não encontrado\");",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/usuarios/:id",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"usuarios",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "TE03wxIB27XNcdbw"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Body matches string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"Não é permitido excluir usuário com carrinho cadastrado\");",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/usuarios/:id",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"usuarios",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "TE03wxIB27XNcdbw"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Body matches string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"Este email já está sendo usado\");",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"nome\": \"Mr X\",\n  \"email\": \"mr_x@qa.com.br\",\n  \"password\": \"teste\",\n  \"administrador\": \"true\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/usuarios/:id",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"usuarios",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "TE03wxIB27XNcdbw"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create New User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf(201);",
+							"});",
+							"",
+							"pm.test(\"Body matches string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"Este email já está sendo usado\");",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"nome\": \"Mr X\",\n  \"email\": \"mr_x@qa.com.br\",\n  \"password\": \"teste\",\n  \"administrador\": \"false\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/usuarios",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"usuarios"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
